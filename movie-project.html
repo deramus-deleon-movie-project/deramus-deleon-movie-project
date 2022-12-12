@@ -1,10 +1,184 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Movie Project</title>
+
+
+    <!--Bootstrap Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--    CSS Stylesheet-->
+    <link href="css/movie-project.css" rel="stylesheet">
 </head>
-<body>
+<!--linking glitch website-->
+<script>
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+
+    // const newMovie = {
+    //         title: "Dr. Dolittle"
+    //     };
+    //
+    // fetch("https://ossified-wiggly-tarantula.glitch.me/movies", {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(newMovie),
+    // }).then(() => fetch("https://ossified-wiggly-tarantula.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
+</script>
+
+
+
+<!--creating forms to edit and add movies-->
+
+<div class="container d-flex justify-content-end">
+    <div class="coffee-list col-6">
+        <div  id="coffees">
+        </div>
+    </div>
+
+    <form class="col-6 mb-3 top-right">
+        <div class="form-group">
+
+            <h3>Add Movie</h3>
+            <label for="addNew"><strong>Title</strong></label>
+            <input type="text" class="form-control" id="addNew">
+            <label for="rating"><strong>Rating</strong></label>
+            <input type="text" class="form-control" id="rating">
+            <div class="card" style="width: 35rem;">
+                <button type="button"  id="submit" class="btn btn-primary" value="submit">Submit</button>
+            </div>
+        </div>
+
+        <form class="bottom-right">
+            <!--New Added Coffee-->
+            <div class="form-group">
+                <h3>Edit Movie</h3>
+                <label for="coffee-box"><strong>Title</strong></label>
+                <input type="text" class="form-control" id="coffee-box2">
+                <label for="coffee-box"><strong>Rating</strong></label>
+                <input type="text" class="form-control" id="coffee-box2">
+                <div class="card" style="width: 35rem;">
+                    <button type="button" id="submit2" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </form>
+</div>
+
+<div id="show"></div>
+
+
+
+
+
+
+
+
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossOrigin="anonymous"></script>
+<!--Bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--Movie Custom JS-->
+<script src="js/movie-project.js"></script>
+
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Orbitron', sans-serif;-->
+<!--            background-image: linear-gradient(#7f8c8d, #000000)-->
+<!--        }-->
+<!--        .card-bg {-->
+<!--            background-color: rgba(0, 0, 0, 0.3);-->
+<!--        }-->
+<!--        .shadow-box {-->
+<!--            box-shadow: 0px 5px 15px white;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <title>Movie Project</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div id="loading">-->
+<!--    <img id="loading-image" src='' alt="Loading..."/>-->
+<!--</div>-->
+<!--<div class="container">-->
+<!--    <div class="card-deck justify-content-center" id="movie"></div>-->
+<!--</div>-->
+
+<!--<div class="form-group">-->
+<!--    <div class="text-center m-2 text-white">Add a Movie</div>-->
+<!--    <form class="form-inline justify-content-center" id="newMovie">-->
+<!--        <input class="form-control m-1" id="newTitle" placeholder="Title" type="text">-->
+<!--        <input class="form-control m-1" id="newGenre" placeholder="Genre" type="text">-->
+<!--        <input class="form-control m-1" id="newRating" placeholder="Rating" type="text">-->
+<!--        <button class="btn btn-light btn-outline-secondary m-1" id="submitNewMovie" type="submit"> Add Movie</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--<div class="form-group">-->
+<!--    <div class="text-center m-2 text-white">Edit a Movie</div>-->
+<!--    <form class="form-inline justify-content-center" id="editMovie">-->
+<!--        <input class="form-control m-1" id="editTitle" placeholder="Title" type="text">-->
+<!--        <input class="form-control m-1" id="editGenre" placeholder="Genre" type="text">-->
+<!--        <input class="form-control m-1" id="editRating" placeholder="Rating" type="text">-->
+<!--        <input id="idHidden" type="hidden">-->
+<!--        <button class="btn btn-light btn-outline-secondary m-1" id="modMovie" type="submit"> Submit Edit</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;https://glitch.com/edit/#!/reliable-accessible-net?path=README.md%3A1%3A0&ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"-->
+<!--        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+<!--<script src="movie-project.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
