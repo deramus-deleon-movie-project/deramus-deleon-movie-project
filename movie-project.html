@@ -15,64 +15,117 @@
     <link href="css/movie-project.css" rel="stylesheet">
 </head>
 <!--linking glitch website-->
-<script>
-    fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
-        .then(resp => resp.json())
-        .then(data => console.log(data))
+<!--<script>-->
+<!--    fetch("https://ossified-wiggly-tarantula.glitch.me/movies")-->
+<!--        .then(resp => resp.json())-->
+<!--        .then(data => console.log(data))-->
 
-    // const newMovie = {
-    //         title: "Dr. Dolittle"
-    //     };
-    //
-    // fetch("https://ossified-wiggly-tarantula.glitch.me/movies", {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(newMovie),
-    // }).then(() => fetch("https://ossified-wiggly-tarantula.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
-</script>
+<!--    // const newMovie = {-->
+<!--    //         title: "Dr. Dolittle"-->
+<!--    //     };-->
+<!--    //-->
+<!--    // fetch("https://ossified-wiggly-tarantula.glitch.me/movies", {-->
+<!--    //     method: 'POST',-->
+<!--    //     headers: {-->
+<!--    //         'Content-Type': 'application/json',-->
+<!--    //     },-->
+<!--    //     body: JSON.stringify(newMovie),-->
+<!--    // }).then(() => fetch("https://ossified-wiggly-tarantula.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));-->
+<!--</script>-->
 
 
 
 <!--creating forms to edit and add movies-->
 
-<div class="container d-flex justify-content-end">
-    <div class="coffee-list col-6">
-        <div  id="coffees">
-        </div>
+<div class="container2">
+    <div class="form-group row">
+        <h3>Add Movie</h3>
+        <label for="addNew"><strong>Title</strong></label>
+        <input type="text" class="form-control" id="addNew">
+        <label for="rating"><strong>Rating</strong></label>
+        <input type="text" class="form-control" id="rating">
+        <button type="button"  id="submit" class="btn btn-primary" value="submit">ADD</button>
+            <h3>Edit Movie</h3>
+            <label for="edit"><strong>Title</strong></label>
+            <input type="text" class="form-control" id="edit">
+            <label for="editRate"><strong>Rating</strong></label>
+            <input type="text" class="form-control" id="editRate">
+            <button type="button" id="submit2" class="btn btn-primary" value="submit">Submit</button>
+
     </div>
-
-    <form class="col-6 mb-3 top-right">
-        <div class="form-group">
-
-            <h3>Add Movie</h3>
-            <label for="addNew"><strong>Title</strong></label>
-            <input type="text" class="form-control" id="addNew">
-            <label for="rating"><strong>Rating</strong></label>
-            <input type="text" class="form-control" id="rating">
-            <div class="card" style="width: 35rem;">
-                <button type="button"  id="submit" class="btn btn-primary" value="submit">Submit</button>
-            </div>
-        </div>
-
-        <form class="bottom-right">
-            <!--New Added Coffee-->
-            <div class="form-group">
-                <h3>Edit Movie</h3>
-                <label for="coffee-box"><strong>Title</strong></label>
-                <input type="text" class="form-control" id="coffee-box2">
-                <label for="coffee-box"><strong>Rating</strong></label>
-                <input type="text" class="form-control" id="coffee-box2">
-                <div class="card" style="width: 35rem;">
-                    <button type="button" id="submit2" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
-    </form>
 </div>
 
+
+<!--container for movie's list-->
+<!--<div class="container">-->
+<!--<div class="card"  style="width: 18rem;">-->
+<!--    <img src="..." class="card-img-top" alt="...">-->
+<!--    <div class="card-body">-->
+<!--        <h5 class="card-title">Card title</h5>-->
+<!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--    </div>-->
+<!--    <ul class="list-group list-group-flush">-->
+<!--        <li class="list-group-item">An item</li>-->
+<!--        <li class="list-group-item">A second item</li>-->
+<!--        <li class="list-group-item">A third item</li>-->
+<!--    </ul>-->
+<!--    <div class="card-body">-->
+<!--        <a href="#" class="card-link">Card link</a>-->
+<!--        <a href="#" class="card-link">Another link</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+<div class="container text-center">
+    <div id="card" class="row"></div>
+</div>
+
+
+
+
+
+<!--    <form class="col-6 mb-3 top-right">-->
+<!--        <div class="form-group">-->
+
+<!--            <h3>Add Movie</h3>-->
+<!--            <label for="addNew"><strong>Title</strong></label>-->
+<!--            <input type="text" class="form-control" id="addNew">-->
+<!--            <label for="rating"><strong>Rating</strong></label>-->
+<!--            <input type="text" class="form-control" id="rating">-->
+<!--            <div class="card" style="width: 35rem;">-->
+<!--                <button type="button"  id="submit" class="btn btn-primary" value="submit">Submit</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <form class="bottom-right">-->
+<!--            &lt;!&ndash;New Added Coffee&ndash;&gt;-->
+<!--            <div class="form-group">-->
+<!--                <h3>Edit Movie</h3>-->
+<!--                <label for="edit"><strong>Title</strong></label>-->
+<!--                <input type="text" class="form-control" id="edit">-->
+<!--                <label for="editRate"><strong>Rating</strong></label>-->
+<!--                <input type="text" class="form-control" id="editRate">-->
+<!--                <div class="card" style="width: 35rem;">-->
+<!--                    <button type="button" id="submit2" class="btn btn-primary">Submit</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </form>-->
+
+
+
 <div id="show"></div>
+<div id="show2"></div>
+
+
+<!--<div class="container d-flex justify-content-end">-->
+<!--    <div class="coffee-list col-6">-->
+<!--        <div  id="movies" class="movies">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 

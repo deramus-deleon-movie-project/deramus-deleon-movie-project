@@ -1,3 +1,11 @@
+*{
+    margin: 20px;
+}
 #test{
     color: blue;
+}
+
+.card{
+    border: black solid 1px;
+    margin: 10px;
 }

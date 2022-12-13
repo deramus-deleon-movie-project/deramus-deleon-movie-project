@@ -5,8 +5,45 @@ $(window).on('load', function () {
     alert("Loading page");
 })
 
+//Setting glitch url to variable URL
+// const URL = `https://ossified-wiggly-tarantula.glitch.me/movies`;
+
+let cardContainer = $("#card");
+const renderMovies = () => {
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            let html = ' ';
+            for (let i = 0; i < data.length; i++) {
+                console.log(data[i]);
+
+                let title = data[i].title;
+                let rating = data[i].rating;
+
+                html +=
+                    '<div class="card" style="width: 18rem;">' +
+
+                            '<div class="card-body">' +
+                                '<h5 class="card-title">' + title + '</h5>' +
+                            '</div>' +
+                            '<ul class="list-group list-group-flush">' +
+                                '<li class="list-group-item">' + rating + '</li>' +
+                            '</ul>' +
+                            '<div class="card-body">' +
+                                '<a href="#" class="card-link" id="edit">Edit</a>' +
+                                '<a href="#" class="card-link" id="delete">Delete</a>' +
+                            '</div>' +
+                    '</div>'
+
+            }
+            cardContainer.html(html);
+        });
+}
+renderMovies();
+
+
 //set variables for the project
-const messageArea = document.getElementById("show");
 const input = document.getElementById("addNew");
 const rate = document.getElementById("rating");
 const btn = document.getElementById("submit");
@@ -15,7 +52,7 @@ btn.addEventListener("click", () => {
         title: input.value,
         rating: rate.value
     }
-    fetch(`https://ossified-wiggly-tarantula.glitch.me/movies`,{
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies",{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,18 +61,116 @@ btn.addEventListener("click", () => {
         })
         .then(resp => resp.json())
         .then(data => {
+
+            renderMovies(data)
             console.log(data);
-            messageArea.innerText = "Request Successful! Check console for your information.";
         });
         });
 
-fetch("https://vast-organic-farm.glitch.me/movies/7", {
-    method: "PATCH",
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(edittedMovie)
-}).then(() => fetch("https://vast-organic-farm.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
+function editMe(id){
+    console.log($('#title').val());
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies", {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(
+            {
+                title:$('.card-title').val(),
+                overview: $(".list-group-item").val()
+            }
+        )
+    })
+        .then(response => response.json())
+        .then(json => {
+            $('.card-title').innerText = `${json.title}`
+            $('.card-text').innerText = `${json.overview}`
+        })
+}
+//Edit click
+// let editTitle = $(".card-title").html()
+// let editRate = $(".list-group-item").html
+// $("#edit").click(function (){
+//     $(this).value().data()
+// })
+
+
+
+// const messageArea2 = document.getElementById("show2");
+// const edit = document.getElementById("edit");
+// const editRate = document.getElementById("editRate");
+// const btn2 = document.getElementById("submit2");
+// btn2.addEventListener("click", () => {
+//     const editMovie = {
+//         title: edit.value,
+//         rating: editRate.value
+//     }
+//     fetch("https://ossified-wiggly-tarantula.glitch.me/movies",{
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(editMovie),
+//     })
+//         .then(resp => resp.json())
+//         .then(data => {
+//             console.log(data);
+//             messageArea2.innerText = "Request Successful! Check console for your information.";
+//         });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function edittedMovies(movies) {
+//     let options = {
+//         method: "PATCH",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(movies)
+//     }).then(() => fetch("https://ossified-wiggly-tarantula.glitch.me/movies"))
+//         .then(resp => resp.json())
+//         .then(movies => console.log(movies));
+//     let num = parseInt(movies.id)
+//     return fetch("https://ossified-wiggly-tarantula.glitch.me/movies" + "/" + num, options)
+// }
+
+//
+// function editMovie(movies) {
+//     let options = {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(movies)
+//     }
+//     // let num = parseInt(movies.id)
+//     return fetch("https://ossified-wiggly-tarantula.glitch.me/movies" + "/" + options)
+//         .then((callJson) => callJson.json())
+// }
+// console.log(editMovie())
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -230,137 +365,4 @@ fetch("https://vast-organic-farm.glitch.me/movies/7", {
 //     }
 //     return addMovie(newMovieObj)
 // })
-//
-//
-// const moviesAPI = 'https://hilarious-tame-jay.glitch.me/movies';
-//
-// // Loading page icon
-// $(window).on('load', function () {
-//     $('#loading').hide();
-// })
-//
-// fetch(moviesAPI)
-//     .then((response) => response.json())
-//     .then((jsonData) => renderMovies(jsonData))
-//
-// // Render Movie cards
-// function renderMovies(){
-//     fetch(moviesAPI)
-//         .then((callForJson) => {
-//             return callForJson.json();
-//         }).then((movies) => {
-//         $("#movie").html('');
-//         for (let i = 0; i <= 13; i++) {
-//             $("#movie").append(
-//                 "<div class='card shadow-box col-lg-3 m-2 text-center card-bg text-light'>"
-//                 + "<div class='card-header'>" + movies[i].title + "</div>"
-//                 + "<img class='img-fluid'  src='" + movies[i].poster + "' style='height: 20em; width: 15em' alt='Movie Poster'>"
-//                 + "<div class='card-body'><p>" + movies[i].rating + "/5 <i class=\"bi bi-star-fill\"></i></p>"
-//                 + "<p>" + "Genre: " + movies[i].genre + "</p></div>"
-//                 + "<div class='card-footer'><div class='delete btn btn-light btn-outline-secondary m-1' data-id='" + movies[i].id + "'>" + "<i class=\"bi bi-trash\"></i>" + "</div>"
-//                 + "<div class='edit btn btn-light btn-outline-secondary m-1' data-index='" + i + "'>" + "<i class=\"bi bi-tools\"></i>" + "</div></div></div>")
-//
-//             $('.edit').click(function (e) {
-//                 const index = $(this).data('index');
-//                 e.preventDefault()
-//
-//                 $('#editTitle').val(movies[index].title)
-//                 $('#editGenre').val(movies[index].genre)
-//                 $('#editRating').val(movies[index].rating)
-//                 $('#idHidden').val(movies[index].id)
-//             })
-//
-//             $('.delete').click(function () {
-//                 console.log("delete listener")
-//                 const id = $(this).data('id');
-//                 deleteMovie(id).then(function (){
-//                     renderMovies()
-//                 })
-//             });
-//         }
-//     });
-// }
-//
-//
-// // Edit Movie
-// function editMovie(movie) {
-//     let options = {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(movie)
-//     }
-//     console.log(`${moviesAPI}/${movie.id}`)
-//     return fetch(`${moviesAPI}/${movie.id}`, options)
-//         .then((callJson) => callJson.json())
-// }
-//
-// // Delete Movie
-// function deleteMovie(id) {
-//     let options = {
-//         method: 'DELETE',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     }
-//     return fetch(`${moviesAPI}/${id}`, options)
-//         .then((callJson) => console.log("Delete movie" + id, callJson))
-// }
-//
-// // Create Movie
-// function addMovie(movie) {
-//     let options = {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(movie)
-//     }
-//     return fetch(`${moviesAPI}`, options)
-//         .then((callJson) => callJson.json())
-//         .then((parsedData) => console.log(parsedData))
-//
-// }
-//
-//
-// // Add Movie button event listener
-// $('#submitNewMovie').click(function (e) {
-//     e.preventDefault()
-//     let newTitle = $('#newTitle').val()
-//     let newGenre = $('#newGenre').val()
-//     let newRating = $('#newRating').val()
-//
-//     let newMovieObj = {
-//         title: newTitle,
-//         rating: newRating,
-//         genre: newGenre,
-//         poster: "https://m.media-amazon.com/images/I/51+j8eMdK2L._AC_SL1000_.jpg"
-//     }
-//     return addMovie(newMovieObj).then(function (){
-//         renderMovies()
-//     })
-// })
-//
-// // Edit Movie button event listener
-// $('#modMovie').click(function (e) {
-//     e.preventDefault()
-//
-//     let editTitle = $('#editTitle').val()
-//     console.log(editTitle);
-//     let editGenre = $('#editGenre').val()
-//     let editRating = $('#editRating').val()
-//     let editId = $("#idHidden").val()
-//
-//     let editMovieObj = {
-//         title: editTitle,
-//         rating: editRating,
-//         genre: editGenre,
-//         id: editId
-//     }
-//     console.log(editMovieObj);
-//
-//     return editMovie(editMovieObj).then(function (){
-//         renderMovies()
-//     })
-// })
+
