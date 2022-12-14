@@ -17,7 +17,6 @@ const renderMovies = () => {
     fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             cardContainer.html(loading)
             let html = ' ';
             for (let i = 0; i < data.length; i++) {
@@ -33,10 +32,10 @@ const renderMovies = () => {
                             '<div class="card-body">' +
                                 '<h5 class="card-title" id="title">' + title + '</h5>' +
                             '</div>' +
-                            '<ul class="list-group list-group-flush">' +
-                                '<li class="list-group-item" id="id">' + id + '</li>' +
-                                '<li class="list-group-item" id="rating">' + rating + '</li>' +
-                            '</ul>' +
+                                '<ul class="list-group list-group-flush">' +
+                                    '<li class="list-group-item" id="id">' + id + '</li>' +
+                                    '<li class="list-group-item" id="rating">Rating: ' + rating + '</li>' +
+                                '</ul>' +
                             '<div class="card-body">' +
                                 '<a href="#" class="card-link edit" >Edit</a>' +
                                 '<a href="#" class="card-link" id="delete">Delete</a>' +
@@ -47,26 +46,80 @@ const renderMovies = () => {
             cardContainer.html(html);
             $(".edit").click(function(e) {
                 e.preventDefault();
-                console.log($(this).parent().parent().children().first().children().first().html());
+                $("#edit").val($(this).parent().parent().children().first().children().first().html());
+                $("#editRate").val($(this).parent().parent().children().first().next().children().last().html());
+                $("#editId").val($(this).parent().parent().children().first().next().children().first().html());
+
             });
         });
 }
-$('.edit').click(function (e) {
-              var index = $(this).data(id)
 
-             console.log(index)
-            e.preventDefault()
-            let editTitle = $('#title').val(movies[index].title)
-            let editRating = $('#rating').val(movies[index].rating)
 
-            console.log(editTitle)
-            let editMovieObj = {
-                title: editTitle ,
-                rating: editRating,
 
-            }
-             return editMovie(editMovieObj)
-        })
+const input2 = document.getElementById("edit");
+const rate2 = document.getElementById("editRate");
+const btn2 = document.getElementById("submit2");
+btn2.addEventListener("click", () => {
+    const edittedMovie = {
+        title: input2.value,
+        rating: rate2.value
+    }
+    console.log(newMovie);
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies",{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(edittedMovie),
+    })
+        .then(resp => resp.json())
+        .then(data => {
+
+            renderMovies(data)
+        });
+});
+// FORM SUBMISSION: EDIT FUNCTION
+// On click of "Apply" Button, will create an object with the inputs on the edit form and send to the editMovie() function
+// $('#submit2').click(function (e) {
+//     e.preventDefault();
+//     let title = $('#title').val().html;
+//     let rating = $('#rating').val();
+//     let id = $('#id').val();
+//     let editedMovie = {id, title, rating};
+//     console.log(editedMovie);
+//     editMovie();
+// });
+
+// PATCH REQUEST
+// Takes the movie from the Edit Form and uses PATCH to change the values of it's attributes in the JSON file
+// const editMovie = (movie) => {
+//     let edittedMovie = {
+//         method: 'PUT',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(movie)
+//     }
+//     return fetch("https://ossified-wiggly-tarantula.glitch.me/movies", options)
+//         .then(resp => resp.json())
+//         .then(renderMovies)
+//         .catch(err => console.error(err));
+// }
+//
+// $('#submit2').click(function (e) {
+//               var index = $(this).data.id
+//
+//              console.log(index)
+//             e.preventDefault()
+//             let editTitle = $('#title').val
+//             let editRating = $('#rating').val(data[index].rating)
+//
+//             console.log(editTitle)
+//             // let editMovieObj = {
+//             //     title: editTitle ,
+//             //     rating: editRating,
+//             //
+//             // }
+//             //  return editMovie(editMovieObj)
+//         })
 
 
 renderMovies();
@@ -96,24 +149,27 @@ btn.addEventListener("click", () => {
         });
         });
 
-function editMe(id){
-    console.log($('#title').val());
-    fetch("https://ossified-wiggly-tarantula.glitch.me/movies/" + id, {
-        method: "PUT",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(
-            {
-                title:$('#title').val(),
-                rating: $("#rating").val()
-            }
-        )
-    })
-        .then(response => response.json())
-        .then(json => {
-            $('.card-title').innerText = `${json.title}`
-            $('.card-text').innerText = `${json.overview}`
-        })
-}
+// function editMe(id){
+//     console.log($('#title').val());
+//     fetch("https://ossified-wiggly-tarantula.glitch.me/movies/" + id, {
+//         method: "PUT",
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(
+//             {
+//                 title:$('#title').val(),
+//                 rating: $("#rating").val()
+//             }
+//         )
+//     })
+//         .then(response => response.json())
+//         .then(json => {
+//             $('.card-title').innerText = `${json.title}`
+//             $('.card-text').innerText = `${json.overview}`
+//         })
+// }
+
+
+
 //Edit click
 // let editTitle = $(".card-title").html()
 // let editRate = $(".list-group-item").html
