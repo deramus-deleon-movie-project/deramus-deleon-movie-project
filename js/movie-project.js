@@ -7,9 +7,7 @@
 
 //Setting glitch url to variable URL
 // const URL = `https://ossified-wiggly-tarantula.glitch.me/movies`;
-setTimeout(function(){
-    document.getElementById('loading').className = 'loader';
-}, 5000);
+
 
 
 console.log("setTimeout() example...");
@@ -27,26 +25,50 @@ const renderMovies = () => {
 
                 let title = data[i].title;
                 let rating = data[i].rating;
+                let id = data[i].id;
 
                 html +=
                     '<div class="card" style="width: 18rem;">' +
 
                             '<div class="card-body">' +
-                                '<h5 class="card-title">' + title + '</h5>' +
+                                '<h5 class="card-title" id="title">' + title + '</h5>' +
                             '</div>' +
                             '<ul class="list-group list-group-flush">' +
-                                '<li class="list-group-item">' + rating + '</li>' +
+                                '<li class="list-group-item" id="id">' + id + '</li>' +
+                                '<li class="list-group-item" id="rating">' + rating + '</li>' +
                             '</ul>' +
                             '<div class="card-body">' +
-                                '<a href="#" class="card-link" id="edit">Edit</a>' +
+                                '<a href="#" class="card-link edit" >Edit</a>' +
                                 '<a href="#" class="card-link" id="delete">Delete</a>' +
                             '</div>' +
                     '</div>'
 
             }
             cardContainer.html(html);
+            $(".edit").click(function(e) {
+                e.preventDefault();
+                console.log($(this).parent().parent().children().first().children().first().html());
+            });
         });
 }
+$('.edit').click(function (e) {
+              var index = $(this).data(id)
+
+             console.log(index)
+            e.preventDefault()
+            let editTitle = $('#title').val(movies[index].title)
+            let editRating = $('#rating').val(movies[index].rating)
+
+            console.log(editTitle)
+            let editMovieObj = {
+                title: editTitle ,
+                rating: editRating,
+
+            }
+             return editMovie(editMovieObj)
+        })
+
+
 renderMovies();
 
 
@@ -76,13 +98,13 @@ btn.addEventListener("click", () => {
 
 function editMe(id){
     console.log($('#title').val());
-    fetch("https://ossified-wiggly-tarantula.glitch.me/movies", {
+    fetch("https://ossified-wiggly-tarantula.glitch.me/movies/" + id, {
         method: "PUT",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(
             {
-                title:$('.card-title').val(),
-                overview: $(".list-group-item").val()
+                title:$('#title').val(),
+                rating: $("#rating").val()
             }
         )
     })

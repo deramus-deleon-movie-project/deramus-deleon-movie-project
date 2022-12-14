@@ -24,3 +24,6 @@
     100% { transform: rotate(360deg); }
 }
 
+#id {
+    visibility: hidden;
+}
