@@ -16,7 +16,7 @@
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    animation: spin 5s;
+    animation: spin 10s;
 }
 
 @keyframes spin {
@@ -27,3 +27,25 @@
 #id {
     visibility: hidden;
 }
+
+html {
+    background-image: url("../img/movie_image.jpeg");
+}
+
+
+h3 {
+    color: red;
+    font-family: sans-serif Helvetica;
+}
+
+#submit {
+    background-color: red;
+    color: black;
+}
+
+#submit2 {
+    color:black;
+}
+
+
+
