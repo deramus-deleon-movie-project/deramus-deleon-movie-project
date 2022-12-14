@@ -1,19 +1,26 @@
 
 // Loading page
-$(window).on('load', function () {
-    $('#loading').hide();
-    alert("Loading page");
-})
+// $(window).on('load', function () {
+//     $('#loading').hide();
+//     alert("Loading page");
+// })
 
 //Setting glitch url to variable URL
 // const URL = `https://ossified-wiggly-tarantula.glitch.me/movies`;
+setTimeout(function(){
+    document.getElementById('loading').className = 'loader';
+}, 5000);
 
+
+console.log("setTimeout() example...");
 let cardContainer = $("#card");
+let loading = $("#card").html();
 const renderMovies = () => {
     fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
+            cardContainer.html(loading)
             let html = ' ';
             for (let i = 0; i < data.length; i++) {
                 console.log(data[i]);
