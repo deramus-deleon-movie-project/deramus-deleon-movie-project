@@ -8,6 +8,10 @@
 .card{
     border: black solid 1px;
     margin: 10px;
+    background-color: palegoldenrod;
+}
+#card{
+    background-color: lightgrey;
 }
 
 .loader {
@@ -42,13 +46,26 @@ h3 {
     background-color: red;
     color: black;
     font-family: "Times New Roman";
+    font-weight: bold;
 }
 
 #submit2 {
     color:black;
+    font-weight: bold;
     background-color: red;
     font-family: "Times New Roman";
 }
-
+.form-group{
+    background-color: palegoldenrod;
+}
+body{
+    background-color: gray;
+}
+#rating.list-group-item{
+    background-color: gray;
+}
+.card-link{
+    color: black;
+}
 
 

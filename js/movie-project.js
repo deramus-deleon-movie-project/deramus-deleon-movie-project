@@ -1,7 +1,9 @@
 console.log("setTimeout() example...");
+//setting variables for the loader and card container via html
 let cardContainer = $("#card");
 let loading = $("#card").html();
 let selectedid;
+//looping through each movie
 const renderMovies = () => {
     fetch("https://ossified-wiggly-tarantula.glitch.me/movies")
         .then(resp => resp.json())
@@ -30,15 +32,17 @@ const renderMovies = () => {
                                 '<a href="#" class="card-link delete">Delete</a>' +
                             '</div>' +
                     '</div>'
-
             }
+            //linking card container to html
             cardContainer.html(html);
+            //targeting each card's title, id, and rating's section
             $(".edit").click(function(e) {
                 e.preventDefault();
                 $("#edit").val($(this).parent().parent().children().first().children().first().html());
                 $("#editRate").val($(this).parent().parent().children().first().next().children().last().html());
                 $("#editId").val($(this).parent().parent().children().first().next().children().first().html());
             });
+            // Making the delete function and ensuring that the anchor tag is clickable
             $(`.delete`).click(function(e) {
                 e.preventDefault()
                 let options = {
@@ -47,7 +51,7 @@ const renderMovies = () => {
                         'Content-Type': 'application/json',
                     },
                 }
-
+                //selectedid targets the cards Id
                 selectedid = $(this).parent().parent().children().first().next().children().first().html()
                 console.log(selectedid);
 
@@ -56,6 +60,7 @@ const renderMovies = () => {
                     .catch(err => console.error(err));
 
             });
+            //clickme target the class of the id which makes the whole card clickable and findable in the console log
             $(`.clickMe`).click(function() {
                 selectedid = $(this).attr('id');
                 console.log(selectedid);
@@ -91,10 +96,10 @@ function populateEdit() {
         // Take the movie attributes and set the values within the edit form to match the value of each attribute
         .then(()=> renderMovies())
 }
-
+//calling my loop function
 renderMovies();
 
-//set variables for the project
+//set variables to add the movies to site
 const input = document.getElementById("addNew");
 const rate = document.getElementById("rating");
 const btn = document.getElementById("submit");
@@ -117,24 +122,4 @@ btn.addEventListener("click", () => {
             console.log(data);
         });
         });
-
-
-// $(`.delete`).click(function(e) {
-//     e.preventDefault()
-//     let options = {
-//         method: 'DELETE',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     }
-//
-//         selectedid = $(this).attr('id');
-//         console.log(selectedid);
-//
-//     return fetch("https://ossified-wiggly-tarantula.glitch.me/movies/" + selectedid, options)
-//         .then(renderMovies)
-//         .catch(err => console.error(err));
-//
-// });
-
 console.log(deleteMovie);

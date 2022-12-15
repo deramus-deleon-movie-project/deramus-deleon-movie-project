@@ -12,33 +12,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-
+<!--two forms to let user input and submit data-->
 <div class="container2">
     <div class="form-group row">
         <h3>Add Movie</h3>
         <label for="addNew"><strong>Title</strong></label>
-        <input type="text" class="form-control" id="addNew">
+        <input type="text" class="form-control" id="addNew" placeholder="Add Title Here">
         <label for="rating"><strong>Rating<span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span></strong></label>
-        <input type="text" class="form-control" id="rating">
+        <input type="text" class="form-control" id="rating" placeholder="Rate this Movie">
         <button type="button"  id="submit" class="btn btn-primary" value="submit">Add</button>
             <h3>Edit Movie</h3>
             <label for="edit"><strong>Title</strong></label>
-            <input type="text" class="form-control" id="edit">
+            <input type="text" class="form-control" id="edit" placeholder="Edit Title Here">
             <label for="editRate"><strong>Rating<span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span></strong></label>
-            <input type="text" class="form-control" id="editRate">
+            <input type="text" class="form-control" id="editRate" placeholder="Edit Rating Here">
         <input type="hidden" id="editId">
             <button type="button" id="submit2" class="btn btn-primary">Submit</button>
 
     </div>
 </div>
+<!--card container and loader function-->
 <div class="container text-center">
     <div id="card" class="row">
        <div id="loading" class="loader"></div>
