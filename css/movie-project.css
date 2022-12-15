@@ -35,16 +35,19 @@ html {
 
 h3 {
     color: red;
-    font-family: sans-serif Helvetica;
+    font-family: "Times New Roman";
 }
 
 #submit {
     background-color: red;
     color: black;
+    font-family: "Times New Roman";
 }
 
 #submit2 {
     color:black;
+    background-color: red;
+    font-family: "Times New Roman";
 }
 
 
