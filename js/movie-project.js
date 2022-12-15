@@ -18,7 +18,7 @@ const renderMovies = () => {
                 let id = data[i].id;
 
                 html +=
-                    `'<div class="card clickMe" id='${id}' style="width: 18rem;">'` +
+                    `<div class="card clickMe" id='${id}' style="width: 18rem;">` +
 
                             '<div class="card-body">' +
                                 '<h5 class="card-title" id="title">' + title + '</h5>' +
